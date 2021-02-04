@@ -1,0 +1,16 @@
+<div class="container" style="width: 300px;">
+  <div class="row">
+    <div class="col-xs-1">
+      {{ index + 1 }}
+    </div>
+    <div class="col-xs-3">
+      {{ product.name }}
+    </div>
+    <div class="col-xs-4">
+      ${{ product.price }}
+    </div>
+    <div class="col-xs-2">
+      <button class="btn btn-danger btn-xs" (click)="onRemove()">Remove</button>
+    </div>
+  </div>
+</div>

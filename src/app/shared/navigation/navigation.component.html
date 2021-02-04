@@ -1,0 +1,24 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">My super store</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+    <div class="dropdown navbar-right">
+      <button class="glyphicon glyphicon-shopping-cart dropdown-toggle" style="width: 100px; height: 50px;" type="button" data-toggle="dropdown">Cart
+        {{cartService.shoppingList.length}}
+        <span class="caret"></span></button>
+      <div class="dropdown-menu">
+          <app-cart-list></app-cart-list>
+          <!-- <div style="margin-left: 15px;">
+                Cat <button class="btn btn-danger btn-xs pull-right" style="margin-right: 15px;">Remove</button>
+          </div> -->
+      </div>
+    </div>
+  </div>
+</nav>
