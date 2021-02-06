@@ -2,3 +2,7 @@
                   let idx = index;
                   trackBy: trackByItem" [product]="product" [index]="idx">
 </app-cart-item>
+<div class="alert alert-info">
+    <p>Total Sum: {{cartService.totalSum}}$</p>
+    <p>Total Quantity: {{cartService.totalQuantity}}</p>
+</div>
