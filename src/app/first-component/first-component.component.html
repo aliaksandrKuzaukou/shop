@@ -1,25 +1,6 @@
-<div class="col-lg-3 col-lg-push-2">
-  <div class="span3">
-    <div class="well">
-      <h2 class="muted">{{ product.name }}</h2>
-      <ul>
-        <li><div *ngIf="product.isAvailable == true; then thenBlock else elseBlock"></div>
-          <ng-template #thenBlock><span class="label label-success">In the stock</span></ng-template>
-          <ng-template #elseBlock><span class="label label-danger">Not available</span></ng-template></li>
-      </ul>
-      <p>{{ product.description }}</p>
-      <hr />
-      <h3>${{ product.price }}</h3>
-      <hr />
-      <div class="m-t text-center">
-        <button 
-          class="btn btn-primary btn-lg btn-block"
-          (click)="onBuy()"
-          [disabled]="product.isAvailable == false"
-        >Buy</button>
-      </div>
-      <div class="m-t text-righ">
-      </div>
-    </div>
-  </div>
+<div class="product">
+  <app-product
+  class="product-card"
+  [product]="product"
+></app-product>
 </div>
