@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ProductModel } from '../models/product-model';
 import { CartService } from 'src/app/services/cart.service';
-import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -13,12 +12,19 @@ export class CartItemComponent {
   @Input() product: ProductModel;
   @Input() index: number;
 
-  constructor(public cartService: CartService, public productService: ProductService) { }
+  constructor(public cartService: CartService) { }
 
   trackByItem(index: number, item: ProductModel): number { return item.id; }
 
+  onIncreaseQuantity(id: number):void {
+    this.cartService.increaseQuantity(id);
+  }
+
+  onDecreaseQuantity(id: number): void{
+    this.cartService.decreaseQuantity(id);
+  }
+
   onRemove(): void {
     this.cartService.removeProductFromCart(this.product.id);
-    this.productService.updateProductByIdIsAvailableValue(this.product.id, true);
   }
 }

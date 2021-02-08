@@ -8,6 +8,10 @@ export class CartService {
   shoppingList: ProductModel[] = [];
   constructor(private productsService: ProductService) { }
 
+  get getShoppingList(): ProductModel[] {
+    return this.shoppingList;
+  }
+
   addProductToCart(id: number): void {
     if (!this.isProductInCart(id)) {
       const product: ProductModel = this.productsService.getProductById(id);
@@ -18,15 +22,30 @@ export class CartService {
     } else {
       this.shoppingList.forEach(item => {
         if (item.id === id) {
-          item.quantity += 1;
+          this.increaseQuantity(id);
         }
         this.updateCartTotalSumAndQuantity();
       });
     }
   }
 
+  increaseQuantity(id: number): void {
+    this.changeQuantity(id, 1);
+  }
+
+  decreaseQuantity(id: number): void {
+    const currentProduct = this.getShoppingList.find((item) => item.id === id);
+    if (currentProduct.quantity === 1){
+      this.removeProductFromCart(id);
+    }
+    else {
+      this.changeQuantity(id, -1);
+    }
+  }
+
   removeProductFromCart(id: number): void {
     this.shoppingList = this.shoppingList.filter(item => item.id !== id);
+    this.productsService.updateProductByIdIsAvailableValue(id, true);
     this.updateCartTotalSumAndQuantity();
   }
 
@@ -42,5 +61,20 @@ export class CartService {
 
   private isProductInCart(id: number): boolean {
     return this.shoppingList.some(item => item.id === id);
+  }
+
+  private changeQuantity(id: number, diffQuantity: number): void{
+    this.shoppingList = this.getShoppingList.map((item) =>{
+      return item.id === id
+        ? {
+            ...item,
+            quantity: item.quantity + diffQuantity,
+            price: this.productsService.getProductById(id).price * (item.quantity + diffQuantity),
+        }
+        : {
+            ...item,
+        };
+    });
+    this.updateCartTotalSumAndQuantity();
   }
 }
