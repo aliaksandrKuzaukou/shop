@@ -51,11 +51,11 @@ export class CartService {
 
   updateCartTotalSumAndQuantity(): void{
     this.totalQuantity = this.shoppingList.reduce((previousValue, currentValue) => {
-      return previousValue + currentValue.quantity
+      return previousValue + currentValue.quantity;
     }, 0);
 
     this.totalSum = this.shoppingList.reduce((previousValue, currentValue) => {
-      return previousValue + currentValue.price
+      return previousValue + currentValue.price;
     }, 0);
   }
 
@@ -64,7 +64,7 @@ export class CartService {
   }
 
   private changeQuantity(id: number, diffQuantity: number): void{
-    this.shoppingList = this.getShoppingList.map((item) =>{
+    this.shoppingList = this.getShoppingList.map((item) => {
       return item.id === id
         ? {
             ...item,
