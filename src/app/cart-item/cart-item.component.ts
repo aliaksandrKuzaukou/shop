@@ -16,7 +16,7 @@ export class CartItemComponent {
 
   trackByItem(index: number, item: ProductModel): number { return item.id; }
 
-  onIncreaseQuantity(id: number):void {
+  onIncreaseQuantity(id: number): void {
     this.cartService.increaseQuantity(id);
   }
 
