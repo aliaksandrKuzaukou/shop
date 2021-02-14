@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ProductModel } from '../models/product-model';
 import { ProductService } from '../services/product.service';
+
 @Injectable()
 export class CartService {
   public totalSum = 0;
   public totalQuantity = 0;
+
   shoppingList: ProductModel[] = [];
+
   constructor(private productsService: ProductService) { }
 
   get getShoppingList(): ProductModel[] {
