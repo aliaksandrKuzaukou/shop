@@ -1,4 +1,4 @@
-import { CategoryEnum } from '../enums/category-enum';
+import { CategoryEnum } from './enums/category-enum';
 
 export interface ProductModel{
    readonly id: number;

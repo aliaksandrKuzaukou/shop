@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ProductModel } from '../models/product-model';
+import { ProductModel } from '../../../models/product-model';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class CartItemComponent {
 
   trackByItem(index: number, item: ProductModel): number { return item.id; }
 
-  onIncreaseQuantity(id: number):void {
+  onIncreaseQuantity(id: number): void {
     this.cartService.increaseQuantity(id);
   }
 

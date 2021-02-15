@@ -1,6 +1,6 @@
 import { ProductModel } from '../models/product-model';
-import { CategoryEnum } from '../enums/category-enum';
-export const ListProducts: ProductModel[] = [
+import { CategoryEnum } from '../models/enums/category-enum';
+export const listProducts: ProductModel[] = [
     {
         id: 0, name: 'Cat', description: 'Best Cat', price: 1000, category: CategoryEnum.Animal, isAvailable: true
     },
