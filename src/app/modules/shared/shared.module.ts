@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavigationComponent } from '../shared/navigation/navigation.component';
+import { NavigationComponent } from './navigation/navigation.component';
 import { CartModule } from '../cart/cart.module';
+import { HighlightDirective } from './directives/highlight.directive';
 
 
 @NgModule({
   declarations: [
-    NavigationComponent
+    NavigationComponent,
+    HighlightDirective
   ],
   imports: [
     CommonModule,
     CartModule
   ],
   exports: [
-    NavigationComponent
+    NavigationComponent,
+    HighlightDirective
   ]
 })
 export class SharedModule { }

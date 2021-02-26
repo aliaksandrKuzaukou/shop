@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductItemComponent } from '../product/product-item/product-item.component';
 import { ProductListComponent } from '../product/product-list/product-list.component';
 import { FirstComponentComponent } from '../product/first-component/first-component.component';
+import { SharedModule } from './../shared/shared.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { FirstComponentComponent } from '../product/first-component/first-compon
     ProductListComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   exports: [
     FirstComponentComponent,

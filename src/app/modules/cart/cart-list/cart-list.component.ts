@@ -10,5 +10,5 @@ import { ProductModel } from '../../../models/product-model';
 
 export class CartListComponent{
   constructor(public cartService: CartService) { }
-  trackByItem(index: number, item: ProductModel): number {return item.id; }
+  trackByItem(index: number, item: ProductModel): number { return item.id; }
 }

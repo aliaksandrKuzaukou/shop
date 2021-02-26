@@ -5,11 +5,11 @@ import { AppComponent } from './app.component';
 import { ProductService } from './services/product.service';
 import { CartModule } from './modules/cart/cart.module';
 import { ProductModule } from './modules/product/product.module';
-import { SharedModule } from './modules/shared/navigation.module';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
