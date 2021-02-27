@@ -36,6 +36,13 @@ export class CartService {
     this.changeQuantity(id, 1);
   }
 
+  isEmptyCart (): boolean {
+    if(this.totalQuantity == 0){
+      return true;
+    }
+    return false;
+  }
+
   decreaseQuantity(id: number): void {
     const currentProduct = this.getShoppingList.find((item) => item.id === id);
     if (currentProduct.quantity === 1){
@@ -51,8 +58,14 @@ export class CartService {
     this.productsService.updateProductByIdIsAvailableValue(id, true);
     this.updateCartTotalSumAndQuantity();
   }
+  
+  removeAllProductsFromCart(): void {
+    this.getShoppingList.forEach(product => this.productsService.updateProductByIdIsAvailableValue(product.id, true));
+    this.shoppingList = [];
+    this.updateCartTotalSumAndQuantity();
+  }
 
-  updateCartTotalSumAndQuantity(): void{
+  updateCartTotalSumAndQuantity(): void {
     this.totalQuantity = this.shoppingList.reduce((previousValue, currentValue) => {
       return previousValue + currentValue.quantity;
     }, 0);
@@ -61,7 +74,7 @@ export class CartService {
       return previousValue + currentValue.price;
     }, 0);
   }
-
+  
   private isProductInCart(id: number): boolean {
     return this.shoppingList.some(item => item.id === id);
   }

@@ -2,7 +2,14 @@
                   let idx = index;
                   trackBy: trackByItem" [product]="product" [index]="idx">
 </app-cart-item>
+
 <div class="alert alert-info">
     <p>Total Sum: {{cartService.totalSum}}$</p>
     <p>Total Quantity: {{cartService.totalQuantity}}</p>
+    <button type="button" 
+            class="btn btn-danger btn-number" 
+            (click)="this.cartService.removeAllProductsFromCart()"
+            [disabled]="this.cartService.isEmptyCart()">
+        Remove all products.
+    </button>
 </div>
