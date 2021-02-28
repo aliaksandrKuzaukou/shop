@@ -6,10 +6,12 @@ import { ProductService } from './services/product.service';
 import { CartModule } from './modules/cart/cart.module';
 import { ProductModule } from './modules/product/product.module';
 import { SharedModule } from './modules/shared/shared.module';
+import { FirstComponent } from './modules/first/first/first.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FirstComponent
   ],
   imports: [
     BrowserModule,
