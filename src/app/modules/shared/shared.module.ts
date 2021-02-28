@@ -9,7 +9,7 @@ import { HighlightDirective, FontSizeDirective } from './directives';
   declarations: [
     NavigationComponent,
     HighlightDirective,
-    FontSizeDirective
+    FontSizeDirective,
   ],
   imports: [
     CommonModule,

@@ -4,10 +4,10 @@
       {{ index + 1 }}
     </div>
     <div class="col-xs-3">
-      {{ product.name }}
+      {{ product.name | uppercase }}
     </div>
     <div class="col-xs-4">
-      ${{ product.price }}
+      {{ product.price | currency:'USD' }}
     </div>
     <div class="col-xs-2">
       <button class="btn btn-danger btn-xs" (click)="onRemove()">Remove</button>
