@@ -1,8 +1,19 @@
-<app-cart-item *ngFor="let product of cartService.shoppingList;
+<div class="cart-filter">
+  <label>
+    <i class="arrow" [ngClass]="isAsc ? 'arrow--down' : 'arrow--up'"></i>
+    <input type="checkbox" [checked]="isAsc" (change)="isAsc = !isAsc" hidden/>
+  </label>
+  <mat-form-field>
+    <mat-label>Order by</mat-label>
+    <mat-select [(value)]="selectedOption">
+      <mat-option *ngFor="let option of options" [value]="option.value">{{option.name | titlecase }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<app-cart-item *ngFor="let product of cartService.shoppingList | orderBy:selectedOption:isAsc;
                   let idx = index;
                   trackBy: trackByItem" [product]="product" [index]="idx">
 </app-cart-item>
-
 <div class="alert alert-info">
     <p>Total Sum: {{cartService.totalSum}}$</p>
     <p>Total Quantity: {{cartService.totalQuantity}}</p>

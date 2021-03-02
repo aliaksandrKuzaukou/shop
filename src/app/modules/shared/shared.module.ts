@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CartModule } from '../cart/cart.module';
 import { HighlightDirective, FontSizeDirective } from './directives';
+import { OrderByPipe } from './pipes/order-by.pipe';
 
 
 @NgModule({
@@ -10,15 +11,16 @@ import { HighlightDirective, FontSizeDirective } from './directives';
     NavigationComponent,
     HighlightDirective,
     FontSizeDirective,
+    OrderByPipe
   ],
   imports: [
-    CommonModule,
-    CartModule
+    CommonModule
   ],
   exports: [
     NavigationComponent,
     HighlightDirective,
-    FontSizeDirective
+    FontSizeDirective,
+    OrderByPipe
   ]
 })
 export class SharedModule { }

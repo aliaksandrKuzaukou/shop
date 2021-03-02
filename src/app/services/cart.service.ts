@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { ProductModel } from '../models/product-model';
 import { ProductService } from '../services/product.service';
 
 @Injectable()
 export class CartService {
+  public itemsChanged$: Subject<any> = new Subject<any>();
   public totalSum = 0;
   public totalQuantity = 0;
 
@@ -22,12 +24,14 @@ export class CartService {
       this.shoppingList.push(this.productsService.getProductById(id));
       this.productsService.updateProductByIdIsAvailableValue(id, false);
       this.updateCartTotalSumAndQuantity();
+      this.itemsChanged$.next();
     } else {
       this.shoppingList.forEach(item => {
         if (item.id === id) {
           this.increaseQuantity(id);
         }
         this.updateCartTotalSumAndQuantity();
+        this.itemsChanged$.next();
       });
     }
   }
@@ -57,12 +61,14 @@ export class CartService {
     this.shoppingList = this.shoppingList.filter(item => item.id !== id);
     this.productsService.updateProductByIdIsAvailableValue(id, true);
     this.updateCartTotalSumAndQuantity();
+    this.itemsChanged$.next();
   }
   
   removeAllProductsFromCart(): void {
     this.getShoppingList.forEach(product => this.productsService.updateProductByIdIsAvailableValue(product.id, true));
     this.shoppingList = [];
     this.updateCartTotalSumAndQuantity();
+    this.itemsChanged$.next();
   }
 
   updateCartTotalSumAndQuantity(): void {
@@ -92,5 +98,6 @@ export class CartService {
         };
     });
     this.updateCartTotalSumAndQuantity();
+    this.itemsChanged$.next()
   }
 }
