@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { ProductModel } from '../models/product-model';
 import { ProductService } from '../services/product.service';
 
 @Injectable()
 export class CartService {
+  public itemsChanged$: Subject<any> = new Subject<any>();
   public totalSum = 0;
   public totalQuantity = 0;
 
@@ -12,7 +14,7 @@ export class CartService {
   constructor(private productsService: ProductService) { }
 
   get getShoppingList(): ProductModel[] {
-    return this.shoppingList;
+    return [...this.shoppingList];
   }
 
   addProductToCart(id: number): void {
@@ -22,18 +24,27 @@ export class CartService {
       this.shoppingList.push(this.productsService.getProductById(id));
       this.productsService.updateProductByIdIsAvailableValue(id, false);
       this.updateCartTotalSumAndQuantity();
+      this.itemsChanged$.next();
     } else {
       this.shoppingList.forEach(item => {
         if (item.id === id) {
           this.increaseQuantity(id);
         }
         this.updateCartTotalSumAndQuantity();
+        this.itemsChanged$.next();
       });
     }
   }
 
   increaseQuantity(id: number): void {
     this.changeQuantity(id, 1);
+  }
+
+  isEmptyCart (): boolean {
+    if(this.totalQuantity == 0){
+      return true;
+    }
+    return false;
   }
 
   decreaseQuantity(id: number): void {
@@ -50,9 +61,17 @@ export class CartService {
     this.shoppingList = this.shoppingList.filter(item => item.id !== id);
     this.productsService.updateProductByIdIsAvailableValue(id, true);
     this.updateCartTotalSumAndQuantity();
+    this.itemsChanged$.next();
+  }
+  
+  removeAllProductsFromCart(): void {
+    this.getShoppingList.forEach(product => this.productsService.updateProductByIdIsAvailableValue(product.id, true));
+    this.shoppingList = [];
+    this.updateCartTotalSumAndQuantity();
+    this.itemsChanged$.next();
   }
 
-  updateCartTotalSumAndQuantity(): void{
+  updateCartTotalSumAndQuantity(): void {
     this.totalQuantity = this.shoppingList.reduce((previousValue, currentValue) => {
       return previousValue + currentValue.quantity;
     }, 0);
@@ -61,7 +80,7 @@ export class CartService {
       return previousValue + currentValue.price;
     }, 0);
   }
-
+  
   private isProductInCart(id: number): boolean {
     return this.shoppingList.some(item => item.id === id);
   }
@@ -79,5 +98,6 @@ export class CartService {
         };
     });
     this.updateCartTotalSumAndQuantity();
+    this.itemsChanged$.next()
   }
 }

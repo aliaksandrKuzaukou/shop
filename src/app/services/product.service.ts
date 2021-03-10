@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { listProducts } from '../database/database';
 import { ProductModel } from '../models/product-model';
 @Injectable()
 export class ProductService {
 
-  constructor() { }
-
-  getProducts(): ProductModel[] {
-    return listProducts;
+  getProducts(): Observable<ProductModel[]> {
+    return of(listProducts);
   }
 
   getProductById(id: number): ProductModel | undefined {
