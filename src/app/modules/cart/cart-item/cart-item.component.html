@@ -4,9 +4,11 @@
       {{ index + 1 }}
     </div>
     <div class="col-xs-3">
+      <strong>Name:</strong>
       {{ product.name | uppercase }}
     </div>
     <div class="col-xs-4">
+      <strong>Price:</strong>
       {{ product.price | currency:'USD' }}
     </div>
     <div class="col-xs-2">
@@ -14,7 +16,7 @@
     </div>
     <br>
     <div class="col-lg-9">
-      Product quantity:
+      <strong>Amount:</strong>
       <button type="button" class="btn btn-danger btn-number"  data-type="minus" (click)="onDecreaseQuantity(this.product.id)">
         <span class="glyphicon glyphicon-minus"></span>
       </button>

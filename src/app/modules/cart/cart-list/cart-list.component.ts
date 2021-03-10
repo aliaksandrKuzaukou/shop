@@ -41,6 +41,6 @@ export class CartListComponent implements OnInit, OnDestroy {
   }
 
   private updateProducts(): void {
-    this.products = this.cartService.shoppingList;
+    this.products = this.cartService.getShoppingList;
   }
 }

@@ -14,7 +14,7 @@ export class CartService {
   constructor(private productsService: ProductService) { }
 
   get getShoppingList(): ProductModel[] {
-    return this.shoppingList;
+    return [...this.shoppingList];
   }
 
   addProductToCart(id: number): void {

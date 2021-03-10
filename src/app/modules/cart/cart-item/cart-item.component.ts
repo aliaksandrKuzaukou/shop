@@ -1,12 +1,11 @@
-import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, KeyValueDiffers, OnInit, DoCheck } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, KeyValueDiffers, OnInit, DoCheck } from '@angular/core';
 import { ProductModel } from '../../../models/product-model';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cart-item',
   templateUrl: './cart-item.component.html',
-  styleUrls: ['./cart-item.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./cart-item.component.scss']
 })
 export class CartItemComponent implements OnInit, DoCheck {
 
