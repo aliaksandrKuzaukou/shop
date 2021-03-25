@@ -9,6 +9,8 @@ import { CartService } from '../../../services/cart.service';
 })
 export class ProductItemComponent{
   @Input() product: ProductModel;
+  // не стоит тут внедрять зависимость.
+  // лучше сделать аутпут, а зависимость внедрить в родителе, там уже есть одна зависимость
   constructor(private cartService: CartService) { }
 
   onBuy(): void {

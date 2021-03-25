@@ -40,8 +40,8 @@ export class CartService {
     this.changeQuantity(id, 1);
   }
 
-  isEmptyCart (): boolean {
-    if(this.totalQuantity == 0){
+  isEmptyCart(): boolean {
+    if (this.totalQuantity === 0){
       return true;
     }
     return false;
@@ -63,7 +63,7 @@ export class CartService {
     this.updateCartTotalSumAndQuantity();
     this.itemsChanged$.next();
   }
-  
+
   removeAllProductsFromCart(): void {
     this.getShoppingList.forEach(product => this.productsService.updateProductByIdIsAvailableValue(product.id, true));
     this.shoppingList = [];
@@ -80,7 +80,7 @@ export class CartService {
       return previousValue + currentValue.price;
     }, 0);
   }
-  
+
   private isProductInCart(id: number): boolean {
     return this.shoppingList.some(item => item.id === id);
   }
@@ -98,6 +98,6 @@ export class CartService {
         };
     });
     this.updateCartTotalSumAndQuantity();
-    this.itemsChanged$.next()
+    this.itemsChanged$.next();
   }
 }
