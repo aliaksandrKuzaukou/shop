@@ -1,6 +1,6 @@
-import { Sex } from '../models/enums/sex-enum'
-  
-  export interface ConfigModel {
+import { Sex } from '../models/enums/sex-enum';
+
+export interface ConfigModel {
     readonly id?: number;
     readonly login: string;
     readonly email: string;

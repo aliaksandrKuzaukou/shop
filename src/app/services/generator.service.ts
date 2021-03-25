@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ALPHABET } from '../database/alphabet'
+import { ALPHABET } from '../database/alphabet';
 
 @Injectable({
   providedIn: 'root'

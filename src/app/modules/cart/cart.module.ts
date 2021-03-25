@@ -26,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     MatSelectModule,
     FormsModule
   ],
+  // Почему не используете регистрацию через декоратор сервиса?
   providers: [CartService],
   exports: [
     CartListComponent,
